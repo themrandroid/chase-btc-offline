@@ -44,17 +44,26 @@ def load_live_signal():
         return json.load(f)
 
 def load_features():
-    df = pd.read_parquet(FEATURES_FILE)
+    try:
+        df = pd.read_parquet(FEATURES_FILE)
+    except Exception:
+        df = pd.read_csv(FEATURES_FILE.with_suffix(".csv"))
     df.reset_index(inplace=True)
     return df
 
+def load_probs():
+    try:
+        return pd.read_parquet(PROBS_FILE)
+    except Exception:
+        return pd.read_csv(PROBS_FILE.with_suffix(".csv"))
+    
 def run_backtest(config):
     df = load_features()
     prices = df["close"].values
     dates = df["timestamp"].astype(str).tolist()
 
     # Use cached probabilities
-    probs = pd.read_parquet(PROBS_FILE)
+    probs = load_probs()
 
     bt_results = backtest_from_probabilities(
         prices=prices,
@@ -284,3 +293,6 @@ def telegram_bot():
     app.run_polling()
 
 telegram_bot()
+
+if __name__ == "__main__":
+    telegram_bot()
