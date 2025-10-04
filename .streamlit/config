@@ -1,0 +1,14 @@
+[theme]
+# General colors
+primaryColor = "#00FF00"             # Accent color (matches your green buttons)
+backgroundColor = "#121212"          # Main background (matches .main)
+secondaryBackgroundColor = "#1E1E1E" # Sidebar, inputs, sliders, etc.
+textColor = "#FFFFFF"                 # Default text color
+font = "sans serif"                   # Font type
+
+[server]
+headless = true
+port = 8501
+enableCORS = false
+enableXsrfProtection = false
+address = "0.0.0.0"
