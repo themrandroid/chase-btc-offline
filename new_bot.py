@@ -284,3 +284,6 @@ def telegram_bot():
     app.run_polling()
 
 telegram_bot()
+
+if __name__ == "__main__":
+    telegram_bot()
