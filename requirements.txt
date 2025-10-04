@@ -1,5 +1,3 @@
-pandas
-plotly
-requests
-streamlit
-numpy
+python-telegram-bot[job-queue]==22.5
+pytz==2025.2
+requests==2.32.5
